@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Project DefaultTargets="BuildCommit" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+
+
+  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.v1.5.0.235\MSBuild.Community.Tasks.Targets" Condition="Exists('$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.v1.5.0.235\MSBuild.Community.Tasks.Targets')" />
+
+
+
+  <PropertyGroup>
+
+    <ProjectName>Test</ProjectName>
+
+    <BuildRoot>$(MSBuildThisFileDirectory)</BuildRoot>
+
+    <BuildDir>$(BuildRoot)Build</BuildDir>
+
+    <BuildConfiguration Condition="'$(BuildConfiguration)'==''">Release</BuildConfiguration>
+
+    <BuildSolutionFile>$(BuildRoot)$(ProjectName).sln</BuildSolutionFile>
+
+  </PropertyGroup>
+  
+  <Target Name="BuildCommit" DependsOnTargets="Clean;Prepare;Compile" />
+
+  <Target Name="Prepare">
+
+    <MakeDir Directories="$(BuildDir)" />
+
+  </Target>
+
+
+
+  <Target Name="Clean">
+
+    <RemoveDir Directories="$(BuildDir)" ContinueOnError="false" />
+
+  </Target>
+
+  
+
+  <Target Name="PreCompile">
+ <Exec Command='NuGet.exe restore $(BuildSolutionFile)' ContinueOnError="false" />
+
+    </Target>
+
+
+
+
+
+  <Target Name="Compile">
+  <MSBuild Projects="$(BuildSolutionFile)" Properties="
+	Configuration=$(BuildConfiguration);
+	DebugType=pdbonly"/> 
+
+  </Target>
+
+ 
+
+</Project>
