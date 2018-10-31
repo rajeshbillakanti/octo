@@ -2,9 +2,7 @@
 
 <Project DefaultTargets="BuildCommit" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
 
-
-
-  <Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.v1.5.0.235\MSBuild.Community.Tasks.Targets" Condition="Exists('$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.v1.5.0.235\MSBuild.Community.Tasks.Targets')" />
+<Import Project="$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.v1.5.0.235\MSBuild.Community.Tasks.Targets" Condition="Exists('$(MSBuildExtensionsPath)\MSBuild.Community.Tasks.v1.5.0.235\MSBuild.Community.Tasks.Targets')" />
 
 
 
